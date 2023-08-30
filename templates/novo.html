@@ -1,0 +1,33 @@
+{% extends "template.html" %}
+{% block content %}
+      <form class="formularioJogo" action="{{ url_for('add_game') }}" method="post" enctype="multipart/form-data">
+        <figure class="img-thumbnail col-md-4 formularioImagem">
+          <img class="img-fluid" src="{{url_for('image', filename='default_cover.jpg')}}">
+          <figcaption>
+            <label class="fileContainer">
+              Change the cover
+              <input type="file" name="file" accept=".jpg, .png">
+            </label>
+          </figcaption>
+        </figure>
+        <fieldset>
+          {{ form.csrf_token() }}
+          <div class="form-group">
+            {{ form.name.label(class="form-label") }}
+            {{ form.name(class="form-control") }}
+          </div>
+          <div class="form-group">
+            {{ form.category.label(class="form-label") }}
+            {{ form.category(class="form-control") }}
+          </div>
+          <div class="form-group">
+            {{ form.console.label(class="form-label") }}
+            {{ form.console(class="form-control") }}
+          </div>
+          <div class="form-group buttons">
+            {{ form.save(class="btn btn-primary") }}
+            <a href="{{url_for('index')}}"><button type="button" class="btn btn-secondary">Back</button></a>
+          </div>
+        </fieldset>
+      </form>
+{% endblock %}
